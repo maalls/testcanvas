@@ -1,10 +1,10 @@
 <?php
 
-function importImage($data) {
+function importImage($data, $filename) {
 
     $filteredData=substr($data, strpos($data, ",")+1);
     $unencodedData=base64_decode($filteredData);
-    $fp = fopen( __dir__ . '/images/test.png', 'wb' );
+    $fp = fopen($filename, 'wb');
     fwrite($fp, $unencodedData);
     fclose($fp);
 

@@ -18,6 +18,7 @@
 
 <input id="text" type="text" value="Hello Canvas" onkeyup="writeText();" />
 <button id="save">save</button>
+<a href="" id="link">link</a>
 
 <script>
 
@@ -39,13 +40,21 @@
     }
     $(document).ready(function() {
 
-        
-
         $("#save").click(function() {
+            
             var dataURL = canvas.toDataURL();
-            console.log(dataURL);
+            
+            $.post("upload.php", { data: dataURL }, function(data) {
 
-            $.post("upload.php", { data: dataURL });
+                console.log(data);
+                
+                if(data.status == 'ok') {
+
+                    $("#link").attr("href", data.url);
+
+                }
+
+            });
 
         });
 

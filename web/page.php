@@ -7,7 +7,7 @@
 <meta name="twitter:site" content="testing" />
 <meta name="twitter:title" content="Testing" />
 <meta name="twitter:description" content="Testing" />
-<meta name="twitter:image" content="http://nopoo.orp.dev.jp/test/images/test.png" />
+<meta name="twitter:image" content="http://<?php echo $_SERVER['SERVER_NAME'] ?>/images/test.png" />
 
 <title>HTML 5</title>
 <!--[if IE]>
@@ -20,6 +20,6 @@
 <body>
 
 <h1>Image</h1>
-<p><img src="images/test.png" /></p>
+<p><img src="images/<?php echo $_GET['id'] ?>.png" /></p>
 </body>
 </html>
