@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>HTML 5</title>
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+</head>
+<body>
+
+<h1>Canvas</h1>
+
+<canvas id="canvas" width="500" height="500"></canvas><br/>
+
+<input id="text" type="text" value="Hello Canvas" onkeyup="writeText();" />
+<button id="save">save</button>
+
+<script>
+
+    var canvas = document.getElementById("canvas");
+    writeText();
+
+    function writeText() {
+
+        
+        context = canvas.getContext('2d');
+
+        var text = $("#text").val();
+        context.font = '38pt Arial';
+        context.fillStyle = 'cornflowerblue';
+        context.strokeStyle = 'blue';
+        context.fillText(text, canvas.width/2 - 150, canvas.height/2 + 15);
+        context.strokeText(text, canvas.width/2 - 150, canvas.height/2 + 15 );
+
+    }
+    $(document).ready(function() {
+
+        
+
+        $("#save").click(function() {
+            var dataURL = canvas.toDataURL();
+            console.log(dataURL);
+
+            $.post("upload.php", { data: dataURL });
+
+        });
+
+    });
+    
+</script>
+</body>
+</html>
